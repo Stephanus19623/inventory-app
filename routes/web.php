@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\inventory_controller;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [inventory_controller::class,'index'])->name('inventory.index');
+Route::post('/borrow/{id}', [inventory_controller::class,'borrow'])->name('inventory.borrow');
+Route::post('/return/{id}', [inventory_controller::class, 'returnItem'])->name('inventory.return');
